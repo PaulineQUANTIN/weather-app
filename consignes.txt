@@ -1,0 +1,10 @@
+Dans l'application, peu importe le visuel masi je veux au moins:
+- Le nom de la ville, la température / l'icone / la description de la météo du jour
+- Pour les 4 prochains jours, la température / l'icone / la description de la météo à midi
+
+- Un champ texte pour la ville. Quand on soumet le formulaire, la météo s'adapte à la ville donnée
+- Par défaut, au démarrage de l'app, c'est la météo de lens
+
+- lorsque vous soumettez le formulaire, vous récupérez la ville.
+- Dans votre URL, vous spécifiez la nouvelle ville
+- Vous récupérez les infos et vous adaptez le periods

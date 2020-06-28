@@ -1,0 +1,13 @@
+.weathersystem {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 10px;
+}
+
+html {
+    background: no-repeat center/100% url('road.jpg');
+}
+
+.input {
+    width: 300px;
+}
