@@ -57,6 +57,43 @@ class WeatherSystem extends Component {
       }
       */
 
+      /*
+    handleChangeCity = (e) => {
+        e.preventDefault();
+        axios.get(`https://api.openweathermap.org/data/2.5/forecast?q=${this.state.city}&lang=fr&units=metric&appid=8c3a54c385c9c9d874d88f2cd6b3dda8`)
+        .then(res => {
+            let newCity = e.target.childNodes[0].value;
+            console.log(newCity)
+            this.setState({
+                city: newCity
+            })
+        })
+    }
+*/
+/*
+
+    submitCity = (e) => {
+        e.preventDefault();
+        this.addCity(this.state.city);
+    }
+
+    addCity = (name) => {
+        let newCity = {
+          city: name,
+        }
+        this.setState({
+          city: [...this.state.city,newCity]
+        })
+      }
+*/
+/*
+    changeCity = (e) => {
+        this.setState({
+            city: e.target.value
+        })
+        console.log(this.state.city)
+    }*/
+
     render() { 
 /*
         let periodsList = this.state.periods.map(period => {

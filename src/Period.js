@@ -9,10 +9,12 @@ class Period extends Component {
         let iconURL = `http://openweathermap.org/img/wn/${period.weather[0].icon}@2x.png`;
 
         return ( 
-        <div className="period">
+        <div className="period tile">
             <span className="period__date">{period.dt_txt}</span>
             <span className="period__description">{period.weather[0].description}</span>
-            <img src={iconURL} className="period__img" alt=""/>
+            <div>
+                <img src={iconURL} className="period__img is-centered" alt=""/>
+            </div>
             <span className="period__temp">{Math.round(period.main.temp)}°C</span>
         </div>
         );

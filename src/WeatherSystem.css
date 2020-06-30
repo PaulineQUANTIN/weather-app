@@ -8,6 +8,7 @@ html {
     background: no-repeat center/100% url('road.jpg');
 }
 
-.input {
-    width: 300px;
+.tile {
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
 }
