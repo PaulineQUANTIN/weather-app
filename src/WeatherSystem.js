@@ -10,6 +10,7 @@ class WeatherSystem extends Component {
     state = {
         periods: [],
         city: '',
+        days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
      }
 
     componentDidMount() {
@@ -31,7 +32,6 @@ class WeatherSystem extends Component {
                 periods: res.data.list,
             })
         })
-        console.log(this.state.city)
     }
 
     handleChange= (e) => {
@@ -44,23 +44,25 @@ class WeatherSystem extends Component {
     render() { 
 
         let currentDay = this.state.periods.map(period => {
-            return <Period className="currentDay is" period={period}/>
-        });
-    
+            return <Period className="currentDay is" period={period}/> 
+        });       
+
         let nextDays = this.state.periods.map(period => period.dt_txt.includes("12") ? <Period period={period} /> : null);
+        let today = currentDay[0].dt_txt == "";
+        let dayName = this.nextDays.map(day => day.dt_txt)
 
         return ( 
 
-        <div className="container">
+        <div className="container has-text-centered">
             <form onSubmit={this.handleSbmit} className="mt-6">
                 <input className="input is-rounded" type="text" placeholder="Enter a city..." onChange={this.handleChange} value={this.state.city}></input>  
-                <h2 className="has-text-centered title is-2">{this.state.city}</h2>                      
+                <h2 className="has-text-centered title is-2 mt-5">{this.state.city}</h2>                      
             </form>
-            <div className="columns has-text-centered">
+            <div className="columns is-centered mt-5">
                 {currentDay[0]}
             </div>
-            <div className="weathersystem ">
-                    {nextDays[4]}{nextDays[12]}{nextDays[20]}{nextDays[28]}
+            <div className="weathersystem columns">
+                {nextDays}
             </div>
         </div>
             
