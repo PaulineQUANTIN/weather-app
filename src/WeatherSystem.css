@@ -1,8 +1,4 @@
-.weathersystem {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 10px;
-}
+
 
 html {
     background: no-repeat center/100% url('road.jpg');
@@ -11,8 +7,4 @@ html {
 .tile {
     background-color: rgba(255, 255, 255, 0.5);
     border-radius: 5px;
-}
-
-.container {
-    width: 600px;
 }

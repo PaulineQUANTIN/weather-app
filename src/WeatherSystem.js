@@ -9,15 +9,16 @@ import Period from "./Period";
 class WeatherSystem extends Component {
     state = {
         periods: [],
+        period: [],
         city: '',
-        days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
      }
 
     componentDidMount() {
         axios.get(`https://api.openweathermap.org/data/2.5/forecast?q=lens&lang=fr&units=metric&appid=8c3a54c385c9c9d874d88f2cd6b3dda8`)
         .then(res => {
             this.setState({
-                periods: res.data.list,
+                periods: res.data.list.filter(day => day.dt_txt.includes("12")),
+                period: res.data.list,
                 city: res.data.city.name
             })
         })
@@ -28,13 +29,14 @@ class WeatherSystem extends Component {
         axios.get(`https://api.openweathermap.org/data/2.5/forecast?q=${this.state.city}&lang=fr&units=metric&appid=8c3a54c385c9c9d874d88f2cd6b3dda8`)
         .then(res => {
             this.setState({
-                city: res.data.city.name,
-                periods: res.data.list,
+                periods: res.data.list.filter(day => day.dt_txt.includes("12")),
+                period: res.data.list,
+                city: res.data.city.name
             })
         })
     }
 
-    handleChange= (e) => {
+    handleChange = (e) => {
         this.setState({
             city: e.target.value
         })
@@ -43,25 +45,24 @@ class WeatherSystem extends Component {
 
     render() { 
 
-        let currentDay = this.state.periods.map(period => {
-            return <Period className="currentDay is" period={period}/> 
-        });       
-
-        let nextDays = this.state.periods.map(period => period.dt_txt.includes("12") ? <Period period={period} /> : null);
-        let today = currentDay[0].dt_txt == "";
-        let dayName = this.nextDays.map(day => day.dt_txt)
+        let today = this.state.period.map(period => {
+            return <Period period={period}/>
+        })
+        let nextDays = this.state.periods.slice(0,4).map(period => {
+            return <Period period={period}/> 
+        });   
 
         return ( 
 
-        <div className="container has-text-centered">
+        <div className="container has-text-centered weathersystem">
             <form onSubmit={this.handleSbmit} className="mt-6">
                 <input className="input is-rounded" type="text" placeholder="Enter a city..." onChange={this.handleChange} value={this.state.city}></input>  
                 <h2 className="has-text-centered title is-2 mt-5">{this.state.city}</h2>                      
             </form>
-            <div className="columns is-centered mt-5">
-                {currentDay[0]}
+            <div className="today columns is-centered mt-5">
+                {today[0]}
             </div>
-            <div className="weathersystem columns">
+            <div className="nextdays columns">
                 {nextDays}
             </div>
         </div>
