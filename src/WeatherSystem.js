@@ -4,6 +4,7 @@ import axios from 'axios';
 import "./WeatherSystem.css";
 
 import Period from "./Period";
+import Today from "./Today";
 
 
 class WeatherSystem extends Component {
@@ -40,17 +41,18 @@ class WeatherSystem extends Component {
         this.setState({
             city: e.target.value
         })
-        console.log(this.state.city)
     }
 
     render() { 
 
         let today = this.state.period.map(period => {
-            return <Period period={period}/>
+            return <Today period={period}/>
         })
-        let nextDays = this.state.periods.slice(0,4).map(period => {
-            return <Period period={period}/> 
-        });   
+        let days = this.state.periods.map(period => {
+            return <Period period={period} day={period.dt_txt}/> 
+        });  
+        
+        let nextDays = today[0] === days[0] ? days.slice(1,5) : days.slice(0,4);
 
         return ( 
 
@@ -59,11 +61,13 @@ class WeatherSystem extends Component {
                 <input className="input is-rounded" type="text" placeholder="Enter a city..." onChange={this.handleChange} value={this.state.city}></input>  
                 <h2 className="has-text-centered title is-2 mt-5">{this.state.city}</h2>                      
             </form>
-            <div className="today columns is-centered mt-5">
-                {today[0]}
-            </div>
-            <div className="nextdays columns">
-                {nextDays}
+            <div className="columns days">
+                <div className="toDay columns mt-5">
+                    {today[0]}
+                </div>
+                <div className="nextdays columns">
+                    {nextDays}
+                </div>
             </div>
         </div>
             
