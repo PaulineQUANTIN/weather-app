@@ -61,7 +61,7 @@ class WeatherSystem extends Component {
                 <input className="input is-rounded" type="text" placeholder="Enter a city..." onChange={this.handleChange} value={this.state.city}></input>  
                 <h2 className="has-text-centered title is-2 mt-5">{this.state.city}</h2>                      
             </form>
-            <div className="columns days">
+            <div className="columns days is-middle">
                 <div className="toDay columns mt-5">
                     {today[0]}
                 </div>
